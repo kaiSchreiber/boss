@@ -1,0 +1,55 @@
+unit display;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs;
+
+type
+  TFormDisplay = class(TForm)
+    procedure FormPaint(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormDisplay: TFormDisplay;
+
+implementation
+
+uses main;
+
+{$R *.DFM}
+
+procedure TFormDisplay.FormPaint(Sender: TObject);
+begin
+  FormDisplay.Canvas.Draw(0,0,epilines);
+end;
+
+procedure TFormDisplay.FormResize(Sender: TObject);
+begin
+  FormMain.paintLines;
+  FormDisplay.Refresh;
+end;
+
+procedure TFormDisplay.FormCreate(Sender: TObject);
+begin
+  FormMain.paintLines;
+  FormDisplay.DoubleBuffered:=true;
+end;
+
+procedure TFormDisplay.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if LowerCase(key)='s' then
+   begin
+     FormMain.WriteFile.Checked:=true;
+     FormMain.paintLines;
+   end;
+end;
+
+end.

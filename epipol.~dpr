@@ -1,0 +1,17 @@
+program epipol;
+
+uses
+  Forms,
+  main in 'main.pas' {FormMain},
+  display in 'display.pas' {FormDisplay},
+  eyes in 'eyes.pas' {FormEyes};
+
+{$R *.RES}
+
+begin
+  Application.Initialize;
+  Application.CreateForm(TFormMain, FormMain);
+  Application.CreateForm(TFormDisplay, FormDisplay);
+  Application.CreateForm(TFormEyes, FormEyes);
+  Application.Run;
+end.
